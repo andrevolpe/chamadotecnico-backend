@@ -20,6 +20,13 @@ server.get('/chamado', async function(request, response) {
 
 })
 
+server.get('/tarefas/:id',async function(request, response){
+    const id = request.params.id;
+    const sql = 'SELECT * FROM chamados WHERE id = $1'
+    const result = await pool.query(sql, [id]);
+    return response.json(result.rows);
+} )
+
 server.post('/chamado', async function(request,response){
 
     const titulo = request.body.titulo;
@@ -30,4 +37,19 @@ server.post('/chamado', async function(request,response){
 
 })
 
+server.delete('/chamado/:id', async function(request,response){
+    const id = request.params.id;
+    const sql = 'DELETE FROM chamados WHERE id = $1';
+    await pool.query(sql, [id]);
+    return response.status(204).send();
+
+})
+
+server.put('/chamado/:id', async function(request, response){
+    const id = request.params.id;
+    const { titulo, data, concluido} = request.body;
+    const sql = 'UPDATE chamados SET titulo = $1, data = $2, concluido = $3';
+    await pool.query(sql, [titulo, data, concluido, id]);
+    return response.status(204).send();
+})
 server.listen(process.env.PORT || 3000);
