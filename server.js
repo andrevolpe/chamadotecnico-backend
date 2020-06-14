@@ -20,7 +20,7 @@ server.get('/chamado', async function(request, response) {
 
 })
 
-server.get('/tarefas/:id',async function(request, response){
+server.get('/chamado/:id',async function(request, response){
     const id = request.params.id;
     const sql = 'SELECT * FROM chamados WHERE id = $1'
     const result = await pool.query(sql, [id]);
