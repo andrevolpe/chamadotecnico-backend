@@ -3,10 +3,10 @@ const express = require('express');
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-    user: 'gmttykaxjjcadz',
-    password: '38f7578d956485d37653bfa0560e47916de9e7b7ccee155e1fb971fe1a0d1d7b',
-    host: 'ec2-34-200-72-77.compute-1.amazonaws.com',
-    database: 'dbg23a9vo6hig0',
+    user: 'igqzaployorpwy',
+    password: 'ed7ce222b0d00d486d78b8a4a65a631f7a3bba2d036ecee94e64b5f1a8bff92a',
+    host: 'ec2-34-194-198-176.compute-1.amazonaws.com',
+    database: 'd4not3pvst7vq8',
     port: 5432,
     ssl: { rejectUnauthorized: false }
 
