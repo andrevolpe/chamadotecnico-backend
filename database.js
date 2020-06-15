@@ -3,10 +3,10 @@
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-    user: 'igqzaployorpwy',
-    password: 'ed7ce222b0d00d486d78b8a4a65a631f7a3bba2d036ecee94e64b5f1a8bff92a',
-    host: 'ec2-34-194-198-176.compute-1.amazonaws.com',
-    database: 'd4not3pvst7vq8',
+    user: 'wkzepifqwvjbyg',
+    password: 'f50e96d1227e92c1ef1e4910c9d27de5020598a16aa07130451a78104cf572a7',
+    host: 'ec2-34-197-141-7.compute-1.amazonaws.com',
+    database: 'dagu9nlr0kl9el',
     port: 5432,
     ssl: { rejectUnauthorized: false }
 
@@ -17,7 +17,7 @@ const pool = new Pool({
 //    (
 //        ID serial primary key,
 //        Chamado int,
- //       Descricao varchar(300),
+//        Descricao varchar(300),
 //        Concluido boolean
 //    )
 //`;

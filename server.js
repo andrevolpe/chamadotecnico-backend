@@ -3,10 +3,10 @@ const express = require('express');
 const Pool = require('pg').Pool;
 
 const pool = new Pool({
-    user: 'igqzaployorpwy',
-    password: 'ed7ce222b0d00d486d78b8a4a65a631f7a3bba2d036ecee94e64b5f1a8bff92a',
-    host: 'ec2-34-194-198-176.compute-1.amazonaws.com',
-    database: 'd4not3pvst7vq8',
+    user: 'wkzepifqwvjbyg',
+    password: 'f50e96d1227e92c1ef1e4910c9d27de5020598a16aa07130451a78104cf572a7',
+    host: 'ec2-34-197-141-7.compute-1.amazonaws.com',
+    database: 'dagu9nlr0kl9el',
     port: 5432,
     ssl: { rejectUnauthorized: false }
 
@@ -29,10 +29,10 @@ server.get('/chamado/:id',async function(request, response){
 
 server.post('/chamado', async function(request,response){
 
-    const titulo = request.body.titulo;
+    const chamado = request.body.chamado;
     
-    const sql = `INSERT INTO chamados (Titulo,Data,Concluido) VALUES ($1, $2, $3 )`;
-    await pool.query(sql, [titulo, false]);
+    const sql = `INSERT INTO chamados (Chamado,Descricao,Concluido) VALUES ($1, $2, $3 )`;
+    await pool.query(sql, [chamado, false]);
     return response.status(204).send();
 
 })
@@ -47,9 +47,9 @@ server.delete('/chamado/:id', async function(request,response){
 
 server.put('/chamado/:id', async function(request, response){
     const id = request.params.id;
-    const { titulo, data, concluido} = request.body;
-    const sql = 'UPDATE chamados SET titulo = $1, data = $2, concluido = $3';
-    await pool.query(sql, [titulo, data, concluido, id]);
+    const { chamado, descricao, concluido} = request.body;
+    const sql = 'UPDATE chamados SET chamado = $1, descricao = $2, concluido = $3';
+    await pool.query(sql, [chamado, descricao, concluido, id]);
     return response.status(204).send();
 })
 server.listen(process.env.PORT || 3000);
