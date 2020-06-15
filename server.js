@@ -29,10 +29,10 @@ server.get('/chamado/:id',async function(request, response){
 
 server.post('/chamado', async function(request,response){
 
-    const chamado = request.body.chamado;
+    const chamadotecnico = request.body.chamadotecnico;
     
     const sql = `INSERT INTO chamados (Chamado,Descricao,Concluido) VALUES ($1, $2, $3 )`;
-    await pool.query(sql, [chamado, false]);
+    await pool.query(sql, [chamadotecnico, false]);
     return response.status(204).send();
 
 })
