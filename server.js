@@ -2,6 +2,8 @@ const express = require('express');
 
 const Pool = require('pg').Pool;
 
+const cors = require('cors');
+
 const pool = new Pool({
     user: 'wkzepifqwvjbyg',
     password: 'f50e96d1227e92c1ef1e4910c9d27de5020598a16aa07130451a78104cf572a7',
@@ -13,6 +15,10 @@ const pool = new Pool({
 });
 
 const server = express();
+
+server.use(cors());
+
+server.use(express.json());
 
 server.get('/chamado', async function(request, response) {
     const result = await pool.query('SELECT * FROM chamados'); 
@@ -27,14 +33,13 @@ server.get('/chamado/:id',async function(request, response){
     return response.json(result.rows);
 } )
 
-server.post('/chamado', async function(request,response){
 
-    const chamadotecnico = request.body.chamadotecnico;
-    
-    const sql = `INSERT INTO chamados (Chamado,Descricao,Concluido) VALUES ($1, $2, $3 )`;
-    await pool.query(sql, [chamadotecnico, false]);
-    return response.status(204).send();
-
+server.post('/chamado', async function(request, response) {
+    const chamado = request.body.chamado; 
+    const descricao = request.body.descricao;
+    const sql = `INSERT INTO chamados (chamado, descricao, concluido) VALUES ($1, $2, $3)`;
+    await pool.query(sql, [chamado, descricao, true]);
+    return response.status(204).send(); 
 })
 
 server.delete('/chamado/:id', async function(request,response){
