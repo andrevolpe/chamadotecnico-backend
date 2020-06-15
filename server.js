@@ -38,7 +38,7 @@ server.post('/chamado', async function(request, response) {
     const chamado = request.body.chamado; 
     const descricao = request.body.descricao;
     const sql = `INSERT INTO chamados (chamado, descricao, concluido) VALUES ($1, $2, $3)`;
-    await pool.query(sql, [chamado, descricao, true]);
+    await pool.query(sql, [chamado, descricao, false]);
     return response.status(204).send(); 
 })
 
