@@ -57,4 +57,18 @@ server.put('/chamado/:id', async function(request, response){
     await pool.query(sql, [chamado, descricao, concluido, id]);
     return response.status(204).send();
 })
+
+server.patch('/chamado/:id/done', async function(request, response) {
+    const id = request.params.id;
+    const sql = `UPDATE chamados SET concluido = true WHERE id = $1`;
+    await pool.query(sql, [id]);
+    return response.status(204).send();
+})
+
+server.patch('/chamado/:id/undone', async function(request, response) {
+    const id = request.params.id;
+    const sql = `UPDATE chamados SET concluido = false WHERE id = $1`;
+    await pool.query(sql, [id]);
+    return response.status(204).send();
+})
 server.listen(process.env.PORT || 3000);
